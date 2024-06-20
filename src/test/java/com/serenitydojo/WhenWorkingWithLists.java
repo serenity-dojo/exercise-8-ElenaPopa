@@ -2,9 +2,7 @@ package com.serenitydojo;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,20 +16,19 @@ public class WhenWorkingWithLists {
     // We can create a list containing a specified list of values
     @Test
     public void creatingAListOfValues() {
-        List<String> colors = null;
-
-        // TODO: Create an immutable list of Strings containing the values "red", "green" and "blue"
-        //  using the Arrays.asList() method
+        //Create a fixed size list
+        List<String> colors = Arrays.asList("red", "green", "blue");
 
         assertThat(colors).containsExactly("red", "green", "blue");
+        //To create immutable lists: List.of("red", "green", "blue") from Java 9+
     }
 
     // We can add a value an empty list
     @Test
     public void addingAValueToAnEmptyList() {
-        List<String> colors = null;
-
-        // TODO: Create a new ArrayList, and add "red" and "green" this list
+        List<String> colors = new ArrayList<>();
+        Collections.addAll(colors, "red", "green");
+        //instead of adding one by one with colors.add();
 
         assertThat(colors).containsExactly("red", "green");
     }
@@ -40,8 +37,7 @@ public class WhenWorkingWithLists {
     @Test
     public void addingAValueToTheEndList() {
         List<String> colors = new ArrayList<>(Arrays.asList("red", "green", "blue"));
-
-        // TODO: Add "yellow" to the END of this list
+        colors.add("yellow");
 
         assertThat(colors).containsExactly("red", "green", "blue", "yellow");
     }
@@ -50,9 +46,7 @@ public class WhenWorkingWithLists {
     @Test
     public void addingAValueToTheStartOfAList() {
         List<String> colors = new ArrayList<>(Arrays.asList("red", "green", "blue"));
-
-        // TODO: Add "yellow" to the START of this list
-
+        colors.add(0, "yellow");
         assertThat(colors).containsExactly("yellow", "red", "green", "blue");
     }
 
@@ -60,8 +54,7 @@ public class WhenWorkingWithLists {
     @Test
     public void deletingAValueInAList() {
         List<String> colors = new ArrayList<>(Arrays.asList("red", "green", "blue"));
-
-        // TODO: Remote "green" from the list
+        colors.remove("green");
 
         assertThat(colors).containsExactly( "red", "blue");
     }
@@ -70,9 +63,7 @@ public class WhenWorkingWithLists {
     @Test
     public void findingTheLengthOfAList() {
         List<String> colors = new ArrayList<>(Arrays.asList("red", "green", "blue"));
-
-        int numberOfElements = 0;
-        // TODO: Remote "green" from the list
+        int numberOfElements = colors.size();
 
         assertThat(numberOfElements).isEqualTo(3);
     }
